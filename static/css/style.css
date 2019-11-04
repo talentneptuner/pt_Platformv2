@@ -1,0 +1,208 @@
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+
+}
+
+.text{
+    font-family: 华文中宋;
+}
+
+.textAncient{
+    font-family: 华文中宋;
+}
+
+.noPadding{
+    padding: 0;
+}
+
+
+.clearBackground{
+    background-color: white;
+}
+.flexDis{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.noact{
+    color: #4b5257;
+}
+
+.header{
+    flex: 0 0 auto;
+}
+.mainCont{
+    flex: 1 0 auto;
+}
+
+.footer{
+    flex: 0 0 auto;
+}
+/**nav**/
+.topNav{
+    margin-top: 30px;
+    text-align: center;
+}
+
+/**search**/
+.searchInput{
+    border-radius: 0px;
+}
+
+
+.searchInput:focus{
+    border: 0.5px solid #999999;
+}
+
+.searchbtn{
+    font-family: 华文中宋;
+    border-radius: 0;
+}
+.searchbtn:focus{
+    border: 0.5px solid #999999;
+}
+
+
+/**text**/
+.article{
+    font-family: 华文中宋;
+    line-height: 1.8;
+    margin: 3em auto auto;
+    background-color: #fff;
+    box-shadow: 0 0 30px #eaeaea;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-bottom: 60px;
+    padding-top: 60px;
+
+}
+.loginmodal{
+    font-family: 华文中宋;
+    line-height: 1.8;
+    margin: 3em auto auto;
+    background-color: #fff;
+    box-shadow: 0 0 30px #eaeaea;
+
+}
+
+
+
+.article p{
+    text-indent: 2em;
+}
+
+/**footer**/
+.footerT{
+    margin-top: 40px;
+    border: 0px;
+    text-align: center;
+    background-color: #f4f6f8;
+    line-height: 3;
+    font-family: 华文中宋;
+
+}
+
+.pageN{
+    margin-right: 3px;
+}
+
+.titleCon{
+    text-align: center;
+    font-size: 30px;
+    line-height: 1.2;
+}
+
+.labelImage{
+    max-width: 350px;
+    max-height: 468px;
+    height: auto;
+    width: auto;
+}
+
+.radio-sex {
+    position: relative;
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.radio-sex input {
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-bottom: 1px;
+    /* 前面三行代码是为了让radio单选按钮与文字对齐 */
+    width: 20px;
+    height: 20px;
+    appearance: none;/*清楚默认样式*/
+    -webkit-appearance: none;
+    opacity: 0;
+    outline: none;
+    /* 注意不能设置为display:none*/
+}
+
+.sign{
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 2px;
+}
+
+.butn{
+    background-color: #adadad;
+    width: 75px;
+    height: 37px;
+    text-align: center;
+    line-height: 1.5;
+    padding: 5px;
+    border-radius: 0;
+    border: none;
+}
+
+.butn:hover{
+    background-color: #4b5257;
+    border-color: #4b5257;
+}
+
+.login_input{
+    border-top: None;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    outline: none;
+}
+
+.login_input:hover{
+    border-bottom:2px  solid #adadad ;
+}
+.login_input:active{
+    border-bottom:2px  solid #adadad ;
+}
+.login_input:visited, .login_input:focus{
+    border-bottom:2px  solid #adadad ;
+}
+
+.sign:focus, .sign:visited, .sign:active{
+    outline: none;
+    border: 1px solid #4b5257;
+}
+
+.loginleft{
+    padding: 100px 20px;
+    background-image: url("../image/background45.png");
+    background-repeat: repeat-x;
+
+
+}
+
+.modalImage{
+    max-width: 400px;
+    height: auto;
+}
+
+.right_button{
+    position: absolute;
+    right: 10px;
+    border-radius: 50%;
+    text-align: center;
+}

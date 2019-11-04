@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>海王星人</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/normal.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/build.css' %}">
+
+</head>
+<body class="noPadding text">
+
+<div class="container-fluid noPadding flexDis">
+
+    <div class="row header">
+        <div class="col-md-12">
+            <nav class="topNav">
+                <ol class="breadcrumb clearBackground ">
+                    <li class="breadcrumb-item active">
+                        <a href="#">主页</a>
+                    </li>
+                    /
+                    <li class="breadcrumb-item  ">
+                        <a href="#">标注记录</a>
+                    </li>
+                    /
+                    <li class="breadcrumb-item ">
+                        <a href="{% url 'logout' %}">退出登录</a>
+                    </li>
+                </ol>
+            </nav>
+
+        </div>
+    </div>
+    <section class="mainCont">
+        <div class="row" style="padding-bottom: 60px">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10 article">
+            <a id="add_task" style="position: absolute; top: 30px; right: 50px; cursor: pointer">>>去添加任务</a>
+                <h2 class="textAncient">
+                    标注任务
+                </h2>
+                <table class="table table-striped" style="margin-top: 20px">
+                    <tbody>
+                    <tr>
+                        {% for task in tasks.object_list %}
+                            <td>{{ task.name }}</td>
+                            <td>任务状态：{% if task.has_distributed %}
+                                已分配任务
+                            {% else %}
+                                未分配任务&nbsp;&nbsp<a href="{% url 'distribute_task' task.id %}"><strong>去分配</strong></a>
+                            {% endif %}</td>
+
+                            <td>完成状态：{% if task.has_finished %}
+                                已完成
+                            {% else %}
+                                未完成&nbsp;&nbsp;<a href="{% url 'close_task' task.id %}"><strong>结束任务</strong></a>
+                            {% endif %}</td>
+                        {% endfor %}
+
+
+                    </tr>
+                    </tbody>
+                </table>
+                <ul class="pagination pagination-lg">
+                {% if tasks.has_previous %}
+                    <li class="pageN"><a href="?{{ tasks.previous_page_number.querystring }}">&laquo;</a>
+                    </li>
+                {% endif %}
+                {% for page in tasks.pages %}
+
+                    {% if page %}
+                        {% ifequal page tasks.number %}
+                            <li class="pageN">
+                                <a href="?{{ page.querystring }}" style="text-decoration: underline">{{ page }}</a>
+                            </li>
+                        {% else %}
+                            <li class="pageN">
+                                <a href="?{{ page.querystring }}">{{ page }}</a>
+                            </li>
+                        {% endifequal %}
+
+                    {% endif %}
+
+                {% endfor %}
+                {% if tasks.has_next %}
+                    <li class="pageN">
+                        <a href="?{{ tasks.next_page_number.querystring }}">&raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+    </section>
+    <div class="row footer">
+        <div class="col-md-12 footerT">
+            created by 海王星人
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script>
+    $('#add_task').click(function () {
+        window.location.href = '/admin/task/task';
+    })
+</script>
+</body>
+</html>
