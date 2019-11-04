@@ -3,19 +3,32 @@ from xadmin import views
 
 from task.models import LabelClass, LabelSubClass, Task
 
+class TaskInline(object):
+    model = Task
+    extra = 0
+
 class TaskAdmin(object):
     list_display = ['name', 'creator', 'has_finished', 'creator']
     search_fields = ['name', 'creator']
-    readonly_fields = ['creator']
+    readonly_fields = ['has_finished', 'has_distributed', 'creator']
 
     def save_models(self):
         obj = self.new_obj
         obj.creator = self.request.user
         obj.save()
 
+    def queryset(self):
+        qs = super(TaskAdmin, self).queryset()
+        user = self.request.user
+        if user.is_superuser == 1:
+            return qs
+        qs = qs.filter(creator = user)
+        return qs
+
 class LabelClassAdmin(object):
     list_display = ['name', 'task']
     ordering = ['task']
+    inlines = [TaskInline]
 
 class LabelSubClassAdmin(object):
     list_display = ['name', 'parent', 'get_task']
