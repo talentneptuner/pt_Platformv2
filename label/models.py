@@ -22,6 +22,7 @@ class Labelresult(models.Model):
     tagger = models.ForeignKey(UserProfile, verbose_name='标注者', on_delete=models.CASCADE)
     label = models.ForeignKey(LabelSubClass, verbose_name='标注结果', on_delete=models.CASCADE)
     time = models.DateTimeField(verbose_name='标记时间', default=datetime.now)
+    remark = models.TextField(verbose_name='备注', null=True, blank=True)
 
     class Meta:
         verbose_name = '标注记录'

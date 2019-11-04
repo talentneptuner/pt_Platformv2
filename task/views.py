@@ -95,6 +95,7 @@ class NextView(View):
         user = request.user
         task_id = request.POST.get('task_id')
         label_task_id = request.POST.get('label_task_id')
+        remarks = request.POST.get('remarks')
         type = int(request.POST.get('type'))
         label_task = LabelTask.objects.get(id=label_task_id)
         label_task.has_done = type
@@ -108,6 +109,7 @@ class NextView(View):
                 label_result.txt = label_task.data_item.txt
                 label_result.img_name = label_task.data_item.img_name
                 label_result.tagger = user
+                label_result.remark = remarks
                 label_result.label = LabelSubClass.objects.get(id=label)
                 label_result.task = task
                 label_result.save()

@@ -16,6 +16,17 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
     <link rel="stylesheet" href="{% static 'css/build.css' %}">
+    <style rel="stylesheet">
+        textarea::-webkit-input-placeholder{
+            font-family: 华文中宋;
+        }
+        textarea:hover,textarea:focus,textarea:visited, textarea:active{
+            border:solid 1px #7d7d7d !important;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            outline: 0 !important;
+        }
+    </style>
 
 
 </head>
@@ -107,6 +118,8 @@
 
                             </div>
                         {% endfor %}
+                    <textarea rows="2" style="position:absolute;bottom:15px;margin-left: 20px; border-radius: 0" id="remarks" type="text" class="form-control"
+                                  placeholder="在这里输入额外的备注信息" value=""></textarea>
 
 
                     </div>
@@ -166,7 +179,8 @@
         type = e.data.type;
         task_id = $('#task_id').val();
         label_task_id = $('#label_task_id').val();
-        console.log(label_task_id);
+        remarks = $('#remarks').val();
+        console.log(remarks);
         if ((checked_boxs.length < 1) && (Number(type) == 2)) {
             $('#alert').text('未选择标签');
             $('#show_alert').modal('show');
@@ -191,7 +205,7 @@
             cache: false,
             type: 'POST',
             url: "{% url 'next'%}",
-            data: {'task_id': task_id, 'label_task_id': label_task_id, 'type': type, 'labels': label_idxs},
+            data: {'task_id': task_id, 'label_task_id': label_task_id, 'type': type, 'labels': label_idxs, 'remarks':remarks},
             beforeSend: function (xhr, settings) {
                 xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
             },
