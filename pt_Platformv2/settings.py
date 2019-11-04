@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'label',
     'xadmin',
     'crispy_forms',
-    'pure_pagination'
+    'pure_pagination',
+    'import_export'
 ]
 
 AUTH_USER_MODEL = "user.UserProfile"
@@ -137,3 +138,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+IMPORT_EXPORT_USE_TRANSACTIONS = True

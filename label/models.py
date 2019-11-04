@@ -1,6 +1,7 @@
 from django.db import models
 from user.models import UserProfile
 from task.models import DataItem, Task, LabelSubClass
+from datetime import datetime
 
 # Create your models here.
 
@@ -20,6 +21,7 @@ class Labelresult(models.Model):
     task = models.ForeignKey(Task, verbose_name='任务', on_delete=models.CASCADE)
     tagger = models.ForeignKey(UserProfile, verbose_name='标注者', on_delete=models.CASCADE)
     label = models.ForeignKey(LabelSubClass, verbose_name='标注结果', on_delete=models.CASCADE)
+    time = models.DateTimeField(verbose_name='标记时间', default=datetime.now)
 
     class Meta:
         verbose_name = '标注记录'

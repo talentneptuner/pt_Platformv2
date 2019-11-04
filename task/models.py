@@ -1,5 +1,6 @@
 from django.db import models
 from user.models import UserProfile
+from datetime import datetime
 
 # Create your models here.
 class Task(models.Model):
@@ -67,6 +68,7 @@ class DataItem(models.Model):
     img_name = models.CharField(max_length=50, verbose_name='图片文件', blank=True, null=True)
     txt = models.TextField(verbose_name='文本')
     task = models.ForeignKey(Task, verbose_name='任务', on_delete=models.CASCADE)
+    time = models.DateTimeField(verbose_name='标记时间', default=datetime.now)
 
     class Meta:
         verbose_name = '待标注数据'
