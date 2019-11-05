@@ -24,6 +24,12 @@ class DistributeTaskView(View):
         return render(request, 'distributetask.html', {'task_id':task.id, 'users':users})
 
     def post(self, request, task_id):
+        '''
+        m个数据，n个人，k组，把m个数据分为k份，n个人分为k份，分别组合后等分
+        :param request:
+        :param task_id:
+        :return:
+        '''
         if not (request.user.is_authenticated and request.user.is_staff):
             return render(request, 'login.html')
         user_idx = request.POST.getlist('users[]')
@@ -45,21 +51,22 @@ class DistributeTaskView(View):
             max_num = task_count // len(users) + 1
         for user in users:
             user2count[user.username] = 0
-        print(type(users))
-        for item in data:
+
+        for i, item in enumerate(data):
             if len(users) > num_per:
                 choices = random.sample(users, num_per)
             else:
                 choices = users
             for user in choices:
-                if user2count[user.username] < max_num:
-                    label_task = LabelTask()
-                    label_task.data_item = item
-                    label_task.tagger = user
-                    tasks.append(label_task)
-                    user2count[user.username] += 1
-                if user2count[user.username] >= max_num:
-                    users.remove(user)
+                # if user2count[user.username] < max_num:
+                label_task = LabelTask()
+                label_task.data_item = item
+                label_task.tagger = user
+                tasks.append(label_task)
+                user2count[user.username] += 1
+                # if user2count[user.username] >= max_num:
+                #     users.remove(user)
+                print(user2count)
         LabelTask.objects.bulk_create(tasks)
         task.has_distributed = True
         task.save()
