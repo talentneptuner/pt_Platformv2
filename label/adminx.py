@@ -4,7 +4,7 @@ from .models import Labelresult
 
 class LabelResultAdmin(object):
     list_display = ['mid', 'img_name', 'task', 'label', 'tagger']
-    list_filter = ['task', 'label', 'tagger', 'label__parent']
+    list_filter = ['task', 'label', 'tagger', 'label__parent', 'time']
     readonly_fields = ['mid', 'img_name', 'txt', 'label', 'tagger', 'time']
 
     def queryset(self):
